@@ -30,3 +30,6 @@ frontend/.env
 
 # Docker
 *.pid
+
+# vite-plugin-pwa dev service worker output
+dev-dist/

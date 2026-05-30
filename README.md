@@ -55,6 +55,21 @@ Configuration is environment-driven (no code changes between envs):
 
 See `backend/.env.example` and `frontend/.env.example` for the available keys.
 
+## PWA (installable app)
+
+The frontend is a Progressive Web App: it ships a web manifest + service
+worker (via `vite-plugin-pwa`), so it can be installed to a phone/desktop home
+screen and launches standalone. Icons are generated from the logo:
+
+```bash
+cd frontend
+npm run icons   # regenerate public/ icons after changing src/assets/logo.svg
+```
+
+The service worker is **disabled in `npm run dev`** (to avoid stale caching
+while developing) and **active in production builds**. To try the installable
+build locally: `npm run build && npm run preview`.
+
 ## Staging / production (Docker)
 
 Both services have a `Dockerfile` (backend: uvicorn; frontend: built static
