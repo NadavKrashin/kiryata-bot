@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="קריית התקשוב">
+  <!-- Placeholder avatar in the page's palette. Replace with the real logo. -->
+  <circle cx="100" cy="100" r="100" fill="#3DA0A0"/>
+  <circle cx="100" cy="108" r="74" fill="#1B2A3D"/>
+  <!-- hair / highlights -->
+  <path d="M44 70 q12 -34 56 -36 q44 2 56 36 q-20 -14 -56 -14 q-36 0 -56 14z" fill="#D7ECEE"/>
+  <!-- VR visor -->
+  <rect x="46" y="74" width="108" height="40" rx="20" fill="#15212F" stroke="#D7ECEE" stroke-width="4"/>
+  <rect x="120" y="84" width="22" height="8" rx="4" fill="#3DA0A0" opacity="0.8"/>
+  <!-- chin / collar hint -->
+  <path d="M64 150 q36 26 72 0 l0 30 q-36 14 -72 0 z" fill="#24435C"/>
+</svg>

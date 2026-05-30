@@ -1,0 +1,56 @@
+:root {
+  /* Palette from the Kiryat HaTikshuv logo */
+  --teal: #3da0a0;
+  --teal-bright: #54c4c4;
+  --navy: #1b2a3d;
+  --navy-deep: #142030;
+  --ice: #d7ecee;
+  --ice-dim: #a9cfd2;
+
+  --bg: var(--navy-deep);
+  --surface: #1f3145;
+  --surface-2: #26415a;
+  --bubble-user: var(--teal);
+  --bubble-bot: #24405a;
+  --text: #eaf4f5;
+  --text-dim: #9fb6c2;
+
+  --radius: 18px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+  font-family: "Assistant", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(61, 160, 160, 0.18), transparent 60%),
+    var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--surface-2);
+  border-radius: 8px;
+}

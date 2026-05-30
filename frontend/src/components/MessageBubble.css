@@ -1,0 +1,44 @@
+.bubble-row {
+  display: flex;
+  width: 100%;
+}
+
+/* In RTL: user on the right (start), bot on the left (end). */
+.bubble-row--user {
+  justify-content: flex-start;
+}
+.bubble-row--bot {
+  justify-content: flex-end;
+}
+
+.bubble {
+  max-width: 78%;
+  padding: 11px 15px;
+  border-radius: var(--radius);
+  line-height: 1.55;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  word-break: break-word;
+}
+
+.bubble__text {
+  white-space: pre-wrap;
+}
+
+.bubble--user {
+  background: var(--bubble-user);
+  color: #07262a;
+  border-bottom-right-radius: 6px;
+  font-weight: 500;
+}
+
+.bubble--bot {
+  background: var(--bubble-bot);
+  color: var(--text);
+  border-bottom-left-radius: 6px;
+}
+
+.bubble--error {
+  background: #5a2733;
+  color: #ffd9df;
+}
