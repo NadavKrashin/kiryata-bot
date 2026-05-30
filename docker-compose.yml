@@ -1,0 +1,26 @@
+# Local / base compose. For staging or production, supply env values via an
+# env file (e.g. `docker compose --env-file .env.production up -d --build`)
+# and point FRONTEND_API_URL / CORS_ORIGINS at the real hosts.
+
+services:
+  backend:
+    build: ./backend
+    environment:
+      ENVIRONMENT: ${ENVIRONMENT:-local}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:8080}
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        # Where the browser reaches the backend. For local compose the browser
+        # talks to the host-mapped backend port.
+        VITE_API_BASE_URL: ${FRONTEND_API_URL:-http://localhost:8000}
+    ports:
+      - "${FRONTEND_PORT:-8080}:80"
+    depends_on:
+      - backend
+    restart: unless-stopped

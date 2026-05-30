@@ -55,6 +55,20 @@ Configuration is environment-driven (no code changes between envs):
 
 See `backend/.env.example` and `frontend/.env.example` for the available keys.
 
+## Staging / production (Docker)
+
+Both services have a `Dockerfile` (backend: uvicorn; frontend: built static
+files served by nginx). Configure via a root env file and bring it up:
+
+```bash
+cp .env.example .env.production   # edit URLs/origins
+docker compose --env-file .env.production up -d --build
+```
+
+Key knobs (see `.env.example`): `CORS_ORIGINS` (backend), `FRONTEND_API_URL`
+(baked into the frontend build), and the host ports. Health check at
+`GET /api/health`.
+
 ## Wiring in the LLM
 
 Open [`backend/app/services/llm.py`](backend/app/services/llm.py) and implement
