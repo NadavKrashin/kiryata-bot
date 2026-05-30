@@ -29,6 +29,7 @@ export default function App() {
 
       <footer className="app__footer">
         <MessageInput onSend={send} disabled={status !== "idle"} />
+        <p className="app__credit">פותח על ידי סגל תכנות כחול של״ז</p>
       </footer>
     </div>
   );
