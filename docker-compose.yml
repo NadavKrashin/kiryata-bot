@@ -8,6 +8,13 @@ services:
     environment:
       ENVIRONMENT: ${ENVIRONMENT:-local}
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:8080}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      LLM_MODEL: ${LLM_MODEL:-claude-sonnet-4-5}
+      LLM_MAX_TOKENS: ${LLM_MAX_TOKENS:-1024}
+      CONTACT_FALLBACK: ${CONTACT_FALLBACK:-הממונה הישיר}
+      LLM_PROXY_URL: ${LLM_PROXY_URL:-}
+      LLM_VERIFY_SSL: ${LLM_VERIFY_SSL:-true}
+      LLM_TIMEOUT_SECONDS: ${LLM_TIMEOUT_SECONDS:-60}
     ports:
       - "${BACKEND_PORT:-8000}:8000"
     restart: unless-stopped

@@ -3,6 +3,11 @@ FROM python:3.12-slim
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
+# pandoc is required by pypandoc to convert the .docx procedures to markdown.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        pandoc \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
 COPY requirements.txt .

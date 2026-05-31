@@ -1,0 +1,51 @@
+# Synonym glossary. Maintain this file by hand.
+#
+# Format: each entry is { canonical: [synonym, synonym, ...] }
+# The "canonical" is the word as it appears in the procedure docs.
+# The synonyms are words users might use when asking questions.
+#
+# This file is loaded into the prompt at startup so the model knows
+# that "שקם" and "כוורת" refer to the same thing.
+#
+# Tips for building this:
+#   1. Start empty. Run the bot for a few days.
+#   2. Whenever the bot says "לא מצאתי" but the answer exists,
+#      figure out which word the user used vs. the doc used.
+#      Add a synonym pair. This is the highest-ROI maintenance work.
+#   3. Include misspellings and ktiv variants (תוכנית / תכנית).
+#   4. Include abbreviations (מנכ"ל / מנכל / מנהל כללי).
+#   5. Don't go overboard — only synonyms that have caused or are
+#      likely to cause confusion. Bloated glossaries hurt accuracy.
+
+terms:
+  - canonical: "קצין תורן"
+    synonyms: ["קצינתו", "קצין תו", "קצינ תורן", "ק\"ת", "קת\"ר", "הקצין התורן"]
+
+  - canonical: "סמל תורן"
+    synonyms: ["סמלתו", "סמל תו", "סמלת", "סמ\"ת", "הסמל התורן"]
+
+  # Examples — replace with your actual procedure terms
+  - canonical: "כוורת"
+    synonyms: ["שקם", "שק\"ם", "שקמ", "מינימרקט", "חנות"]
+
+  - canonical: "מנהל המשמרת"
+    synonyms: ["אחמ\"ש", "אחמש", "אחראי משמרת", "ראש משמרת"]
+
+  - canonical: "תכנית"
+    synonyms: ["תוכנית"]
+
+  - canonical: "דו\"ח"
+    synonyms: ["דוח", "דווח", "דיווח"]
+
+  - canonical: "חדר אוכל"
+    synonyms: [חדא", "חד\"א"]
+  
+  - canonical: "חדר כושר"
+    synonyms: [חדכ", "חד\"כ"]
+
+# Action verbs — group related verbs the model might encounter as questions.
+# These are LESS important than nouns because Claude handles verb morphology
+# well on its own. Only add when you've seen a real miss.
+verbs:
+  - canonical: "פתיחה"
+    forms: ["נפתח", "ייפתח", "לפתוח", "כשפותחים", "פותח"]
