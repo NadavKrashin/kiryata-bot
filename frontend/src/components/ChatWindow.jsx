@@ -3,7 +3,7 @@ import MessageBubble from "./MessageBubble.jsx";
 import "./ChatWindow.css";
 
 /** Scrollable list of messages; auto-scrolls to the newest content. */
-export default function ChatWindow({ messages, onTypingDone }) {
+export default function ChatWindow({ messages, onTypingDone, onOpenCitation }) {
   const scrollRef = useRef(null);
   const listRef = useRef(null);
 
@@ -27,7 +27,12 @@ export default function ChatWindow({ messages, onTypingDone }) {
     <div className="chat-window" ref={scrollRef}>
       <div className="chat-window__list" ref={listRef}>
         {messages.map((m) => (
-          <MessageBubble key={m.id} message={m} onTypingDone={onTypingDone} />
+          <MessageBubble
+            key={m.id}
+            message={m}
+            onTypingDone={onTypingDone}
+            onOpenCitation={onOpenCitation}
+          />
         ))}
       </div>
     </div>

@@ -1,0 +1,257 @@
+.docpanel {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 0;
+  width: 0;
+  overflow: hidden;
+  background: var(--surface);
+  border-inline-start: 1px solid rgba(255, 255, 255, 0.08);
+  transition: width 0.25s ease, flex-basis 0.25s ease;
+}
+
+.docpanel--open {
+  flex: 0 0 440px;
+  width: 440px;
+}
+
+.docpanel__bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  padding-top: calc(10px + env(safe-area-inset-top));
+  background: var(--navy);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.docpanel__title {
+  flex: 1;
+  min-width: 0;
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.docpanel__btn {
+  flex: none;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 6px 10px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.docpanel__btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.docpanel__btn--ghost {
+  visibility: hidden;
+}
+
+.docpanel__close {
+  font-size: 1rem;
+  line-height: 1;
+  padding: 6px 10px;
+}
+
+/* Library list */
+.docpanel__list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.doc-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: start;
+  padding: 13px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  background: var(--bubble-bot);
+  color: var(--text);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.doc-card:hover {
+  background: var(--surface-2);
+  border-color: var(--teal);
+}
+
+.doc-card__icon {
+  flex: none;
+  font-size: 1.2rem;
+}
+
+.doc-card__name {
+  flex: 1;
+}
+
+/* Reader */
+.docpanel__reader {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.docpanel__msg {
+  padding: 16px;
+  color: var(--text-dim);
+}
+
+.docpanel__msg--err {
+  color: #ffb4c0;
+}
+
+.docpanel__toc {
+  flex: none;
+  margin: 10px 12px 0;
+  background: var(--navy-deep);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 8px 12px;
+}
+
+.docpanel__toc > summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--teal-bright);
+}
+
+.docpanel__toc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.toc-link {
+  text-align: start;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 0.85rem;
+  padding: 5px 6px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.toc-link:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--teal-bright);
+}
+
+.docpanel__content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 16px 18px calc(24px + env(safe-area-inset-bottom));
+}
+
+/* Rendered .docx HTML */
+.doc-html {
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.doc-html :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--teal-bright);
+  margin: 1.1em 0 0.4em;
+}
+
+.doc-html p {
+  margin: 0.5em 0;
+}
+
+.doc-html ul,
+.doc-html ol {
+  padding-inline-start: 1.5em;
+  margin: 0.4em 0;
+}
+
+.doc-html li {
+  margin: 0.25em 0;
+}
+
+.doc-html strong {
+  color: #fff;
+}
+
+.doc-html blockquote {
+  margin: 0.6em 0;
+  padding-inline-start: 12px;
+  border-inline-start: 3px solid var(--teal);
+  color: var(--ice-dim);
+}
+
+.doc-html table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0.8em 0;
+  font-size: 0.9rem;
+}
+
+.doc-html :is(td, th) {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 6px 8px;
+  text-align: start;
+}
+
+.doc-html img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.doc-html a {
+  color: var(--teal-bright);
+}
+
+/* Highlight applied when jumping to a cited section. */
+.doc-html .doc-hit {
+  animation: doc-hit-flash 2.6s ease;
+  border-radius: 6px;
+}
+
+@keyframes doc-hit-flash {
+  0%,
+  55% {
+    background: rgba(84, 196, 196, 0.32);
+    box-shadow: 0 0 0 6px rgba(84, 196, 196, 0.18);
+  }
+  100% {
+    background: transparent;
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+/* On phones the panel takes over the screen. */
+@media (max-width: 760px) {
+  .docpanel--open {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    width: 100%;
+    flex-basis: 100%;
+  }
+}

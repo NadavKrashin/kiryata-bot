@@ -42,3 +42,47 @@
   background: #5a2733;
   color: #ffd9df;
 }
+
+/* Clickable citation chips under a bot answer. */
+.bubble__sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.source-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 100%;
+  padding: 5px 10px;
+  border: 1px solid var(--teal);
+  border-radius: 999px;
+  background: rgba(61, 160, 160, 0.14);
+  color: var(--text);
+  font-size: 0.82rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.source-chip:hover {
+  background: rgba(61, 160, 160, 0.3);
+}
+
+.source-chip:active {
+  transform: scale(0.97);
+}
+
+.source-chip__icon {
+  flex: none;
+}
+
+.source-chip__text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

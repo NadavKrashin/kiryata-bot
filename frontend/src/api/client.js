@@ -28,3 +28,24 @@ export async function askQuestion(question, signal) {
   const data = await res.json();
   return data.answer;
 }
+
+/**
+ * List all available procedure documents.
+ * @returns {Promise<Array<{id: string, name: string}>>}
+ */
+export async function getDocuments() {
+  const res = await fetch(`${BASE_URL}/api/docs`);
+  if (!res.ok) throw new Error("לא ניתן לטעון את רשימת המסמכים.");
+  return res.json();
+}
+
+/**
+ * Fetch a single document rendered as HTML, with its section titles.
+ * @param {string} id
+ * @returns {Promise<{id: string, name: string, html: string, sections: string[]}>}
+ */
+export async function getDocument(id) {
+  const res = await fetch(`${BASE_URL}/api/docs/${encodeURIComponent(id)}`);
+  if (!res.ok) throw new Error("לא ניתן לטעון את המסמך.");
+  return res.json();
+}
