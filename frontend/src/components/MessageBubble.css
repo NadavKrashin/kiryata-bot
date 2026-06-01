@@ -33,6 +33,7 @@
 }
 
 .bubble--bot {
+  width: min(85%, 420px);
   background: var(--bubble-bot);
   color: var(--text);
   border-bottom-left-radius: 6px;

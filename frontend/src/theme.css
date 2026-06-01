@@ -39,6 +39,7 @@ body {
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   overscroll-behavior-y: none;
+  overflow-x: hidden;
 }
 
 button,
