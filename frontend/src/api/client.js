@@ -1,4 +1,8 @@
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+// Empty string → same-origin relative calls (e.g. "/api/chat"), which lets the
+// frontend's nginx reverse-proxy them to the backend over the cluster-internal
+// Service. `??` (not `||`) so an intentionally empty value is preserved; only an
+// undefined var (e.g. local `vite dev`) falls back to the dev backend.
+const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:8000";
 
 /**
  * Send a question to the backend and get the answer.

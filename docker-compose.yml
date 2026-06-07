@@ -4,17 +4,12 @@
 
 services:
   backend:
+    image: registry.gitlab.bsmch.net/u8883786/kiryata-bot/backend:${BACKEND_TAG:-latest}
     build: ./backend
-    environment:
-      ENVIRONMENT: ${ENVIRONMENT:-local}
-      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:8080}
-      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
-      LLM_MODEL: ${LLM_MODEL:-claude-sonnet-4-5}
-      LLM_MAX_TOKENS: ${LLM_MAX_TOKENS:-1024}
-      CONTACT_FALLBACK: ${CONTACT_FALLBACK:-הממונה הישיר}
-      LLM_PROXY_URL: ${LLM_PROXY_URL:-}
-      LLM_VERIFY_SSL: ${LLM_VERIFY_SSL:-true}
-      LLM_TIMEOUT_SECONDS: ${LLM_TIMEOUT_SECONDS:-60}
+    # Load real config straight from backend/.env into the container.
+    # (The image build excludes .env via .dockerignore, so it must be injected here.)
+    env_file:
+      - ./backend/.env
     ports:
       - "${BACKEND_PORT:-8000}:8000"
     restart: unless-stopped
@@ -23,11 +18,14 @@ services:
     build:
       context: ./frontend
       args:
-        # Where the browser reaches the backend. For local compose the browser
-        # talks to the host-mapped backend port.
-        VITE_API_BASE_URL: ${FRONTEND_API_URL:-http://localhost:8000}
+        # Empty → the SPA uses same-origin relative "/api" calls, which nginx
+        # proxies to the backend below. No CORS, no host-mapped backend needed.
+        VITE_API_BASE_URL: ${FRONTEND_API_URL:-}
+    environment:
+      # nginx forwards /api/ here — the in-network backend service.
+      BACKEND_URL: ${BACKEND_URL:-http://backend:8000}
     ports:
-      - "${FRONTEND_PORT:-8080}:80"
+      - "${FRONTEND_PORT:-8080}:8080"
     depends_on:
       - backend
     restart: unless-stopped
